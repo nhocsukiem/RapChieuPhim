@@ -1,0 +1,245 @@
+﻿@using RapChieuPhim.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loai = ViewData["loai"] as List<LoaiPhim>;
+}
+
+
+<div class="slider movie-items">
+    <div class="container">
+        <div class="row">
+            <div class="slick-multiItemSlider">
+                @foreach (var phimshd in ViewData["TopView"] as List<RapChieuPhim.Models.Phim>)
+                {
+                    <div class="movie-item">
+                        <div class="mv-img">
+                            <a href="/Phims/DetatilPhims?id=@phimshd.Id &&Name=@phimshd.TenPhim+@phimshd.NgayCongChieu"><img src="/Content/Upload/Image/@phimshd.AnhPhim" alt="" width="285" height="437"></a>
+                        </div>
+                        <div class="title-in">
+                            <div class="cate">
+                                <span class="blue"><a href="/Phims/DetatilPhims?id=@phimshd.Id &&Name=@phimshd.TenPhim+@loai.FirstOrDefault(g=>phimshd.IdLoaiPhim.Contains(g.Id.ToString())).TenLoai+@phimshd.NgayCongChieu">@loai.FirstOrDefault(g => phimshd.IdLoaiPhim.Contains(g.Id.ToString())).TenLoai</a></span>
+                            </div>
+                            <h6><a href="/Phims/DetatilPhims?id=@phimshd.Id &&Name=@phimshd.TenPhim+@loai.FirstOrDefault(g=>phimshd.IdLoaiPhim.Contains(g.Id.ToString())).TenLoai+@phimshd.NgayCongChieu">@phimshd.TenPhim</a></h6>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="buster-light">
+    <div class="movie-items">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-8">
+                    <div class="title-hd">
+                        <h2>PHIM ĐANG CHIẾU RẠP</h2>
+                        <a  class="btn btn-default" href="/Phims">Tất cả<i class="ion-ios-arrow-right"></i></a>
+                    </div>
+                    <div class="tabs">
+                        <div class="tab-content">
+                            
+                                <div id="tab1" class="tab active">
+                                    <div class="row">
+                                        <div class="slick-multiItem">
+                                            @foreach (var phimshd in ViewData["TopView"] as List<Phim>)
+                                            {
+                                                <div class="slide-it">
+                                                    <div class="movie-item">
+                                                        <div class="mv-img">
+                                                            <img src="/Content/Upload/Image/@phimshd.AnhPhim" alt="" width="185" height="250">
+                                                        </div>
+                                                        <div class="hvr-inner">
+                                                            <a href="/Phims/DetatilPhims?id=@phimshd.Id &&Name=@phimshd.TenPhim+@loai.FirstOrDefault(g=>phimshd.IdLoaiPhim.Contains(g.Id.ToString())).TenLoai+@phimshd.NgayCongChieu">Chi Tiết<i class="ion-android-arrow-dropright"></i> </a>
+                                                        </div>
+                                                        <div class="title-in">
+                                                            <h6><a href="/Phims/DetatilPhims?id=@phimshd.Id &&Name=@phimshd.TenPhim+@loai.FirstOrDefault(g=>phimshd.IdLoaiPhim.Contains(g.Id.ToString())).TenLoai+@phimshd.NgayCongChieu">@phimshd.TenPhim</a></h6>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+                    <div class="title-hd">
+                        <h2>PHIM SẮP RA MẮT</h2>
+                        <a class="btn btn-default" href="/Phims">Tất cả<i class="ion-ios-arrow-right"></i></a>
+                    </div>
+                    <div class="tabs">
+                        <div class="tab-content">
+                            <div id="tab21" class="tab active">
+                                <div class="row">
+                                    <div class="slick-multiItem">
+                                        @foreach (var phimshd in ViewData["HanhDong"] as List<Phim>)
+                                        {
+                                            <div class="slide-it">
+                                                <div class="movie-item">
+                                                    <div class="mv-img">
+                                                        <img src="/Content/Upload/Image/@phimshd.AnhPhim" alt="" width="185" height="250">
+                                                    </div>
+                                                    <div class="hvr-inner">
+                                                        <a href="/Phims/DetatilPhims?id=@phimshd.Id &&Name=@phimshd.TenPhim+@loai.FirstOrDefault(g=>phimshd.IdLoaiPhim.Contains(g.Id.ToString())).TenLoai+@phimshd.NgayCongChieu">Details<i class="ion-android-arrow-dropright"></i> </a>
+                                                    </div>
+                                                    <div class="title-in">
+                                                        <h6><a href="/Phims/DetatilPhims?id=@phimshd.Id &&Name=@phimshd.TenPhim+@loai.FirstOrDefault(g=>phimshd.IdLoaiPhim.Contains(g.Id.ToString())).TenLoai+@phimshd.NgayCongChieu">@phimshd.TenPhim</a></h6>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="ads">
+                            <img src="~/Content/Client/images/uploads/ads1.png" alt="" width="336" height="296">
+                        </div>
+                        <div class="celebrities">
+                            <h4 class="sb-title">Diễn viên</h4>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Client/images/uploads/ava1.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Samuel N. Jack</a></h6>
+                                    <span>Diễn viên</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Client/images/uploads/ava2.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Benjamin Carroll</a></h6>
+                                    <span>Diễn viên</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Client/images/uploads/ava3.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Beverly Griffin</a></h6>
+                                    <span>Diễn viên</span>
+                                </div>
+                            </div>
+                            <div class="celeb-item">
+                                <a href="#"><img src="~/Content/Client/images/uploads/ava4.jpg" alt="" width="70" height="70"></a>
+                                <div class="celeb-author">
+                                    <h6><a href="#">Justin Weaver</a></h6>
+                                    <span>Diễn viên</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="trailers">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-12">
+                    <div class="title-hd">
+                        <h2>Trailer Phim</h2>
+                        <a href="#" class="viewall">Tất cả<i class="ion-ios-arrow-right"></i></a>
+                    </div>
+                    <div class="videos">
+                        <div class="slider-for-2 video-ft">
+                            <div>
+                                <iframe class="item-video" src="~/Content/Client/#" data-src="https://www.youtube.com/embed/IosqnBOkk2I"></iframe>
+                            </div>
+                            <div>
+                                <iframe class="item-video" src="~/Content/Client/#" data-src="https://www.youtube.com/embed/3y0KM5jUnmk"></iframe>
+                            </div>
+                            <div>
+                                <iframe class="item-video" src="~/Content/Client/#" data-src="https://www.youtube.com/embed/AU5KLnOZQVY"></iframe>
+                            </div>
+                            <div>
+                                <iframe class="item-video" src="~/Content/Client/#" data-src="https://www.youtube.com/embed/hB_JdXDnZVQ"></iframe>
+                            </div>
+                            <div>
+                                <iframe class="item-video" src="~/Content/Client/#" data-src="https://www.youtube.com/embed/IZ9XoKpG_bE"></iframe>
+                            </div>
+                            <div>
+                                <iframe class="item-video" src="~/Content/Client/#" data-src="https://www.youtube.com/embed/dd_R1GQwKlY"></iframe>
+                            </div>
+
+
+                        </div>
+                        <div class="slider-nav-2 thumb-ft">
+                            <div class="item">
+                                <div class="trailer-img">
+                                    <img src="~/Content/Client/images/uploads/p2.jpeg" alt="photo by Barn Images" width="4096" height="2737">
+                                </div>
+                                <div class="trailer-infor">
+                                    <h4 class="desc">Em Va Trinh</h4>
+                                    <p>2:30</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="trailer-img">
+                                    <img src="~/Content/Client/images/uploads/p7.jpeg" alt="photo by Barn Images" width="350" height="200">
+                                </div>
+                                <div class="trailer-infor">
+                                    <h4 class="desc">The Gioi Khung Long:LANH DIA</h4>
+                                    <p>2:37</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="trailer-img">
+                                    <img src="~/Content/Client/images/uploads/p3.jpeg" alt="photo by Joshua Earle">
+                                </div>
+                                <div class="trailer-infor">
+                                    <h4 class="desc">Nguoi Moi Gioi</h4>
+                                    <p>2:44</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="trailer-img">
+                                    <img src="~/Content/Client/images/uploads/p4.jpeg" alt="photo by Alexander Dimitrov" width="100" height="56">
+                                </div>
+                                <div class="trailer-infor">
+                                    <h4 class="desc">Canh Sat Vu Tru</h4>
+                                    <p>2:43</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="trailer-img">
+                                    <img src="~/Content/Client/images/uploads/SG.jpeg" alt="photo by Wojciech Szaturski" width="100" height="56">
+                                </div>
+                                <div class="trailer-infor">
+                                    <h4 class="desc">Phi Vu Trieu Do: Ban Han </h4>
+                                    <p>2: 32</p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="trailer-img">
+                                    <img src="~/Content/Client/images/uploads/p8.jpeg" alt="photo by Wojciech Szaturski" width="360" height="189">
+                                </div>
+                                <div class="trailer-infor">
+                                    <h4 class="desc">Doraemon:NOBITA VA CUOC CHIEN TI HON</h4>
+                                    <p>3:11</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- latest new v1 section-->
+    <!--end of latest new v1 section-->
+</div>
+@if (Request["sc"] == "1")
+{
+    <script>alert("Đặt vé và thanh toán thành công!");</script>
+}

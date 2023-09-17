@@ -1,0 +1,64 @@
+﻿@model PagedList.IPagedList<RapChieuPhim.Models.Phim>
+@using PagedList.Mvc;
+@using RapChieuPhim.Models;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="hero common-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>Danh sách phim</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Trang chủ</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span>Phim</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="topbar-filter">
+                    <p>Tổng <span>@ViewBag.total phim</span></p>
+                </div>
+                <div class="flex-wrap-movielist">
+                    @foreach (var item in Model)
+                    {
+                        <div class="movie-item-style-2 movie-item-style-1">
+                            <img src="/Content/Upload/Image/@item.AnhPhim" alt="">
+                            <div class="hvr-inner">
+                                <a href="/Phims/DetatilPhims?id=@item.Id &&Name=@item.TenPhim+@item.TenPhim+@item.NgayCongChieu">Chi Tiết <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="mv-item-infor">
+                                <h6><a href="/Phims/DetatilPhims?id=@item.Id &&Name=@item.TenPhim+@item.TenPhim+@item.NgayCongChieu">@item.TenPhim</a></h6>
+                                <p class="rate"><i class="ion-android-star"></i><span>8</span> /10</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="topbar-filter">
+                    <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right" style="color:white">
+                        @(Model.PageCount <Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+                    </div>
+                    <ul class="pagination" style="float:right">
+
+                        @for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            <li>
+                                <a class="page-link" href="/Phims/Index?Id=@ViewBag.Id&&page=@i">@i</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

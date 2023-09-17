@@ -1,0 +1,132 @@
+﻿@model RapChieuPhim.Models.Ve
+@using RapChieuPhim.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewData["lc"] as List<DateTime>;
+    
+}
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>THÔNG TIN PHIM</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Trang chủ</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span>Hồ sơ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single">
+    @{ var phim = (RapChieuPhim.ViewModel.PhimViewModel)ViewData["phimmodel"];
+        var taikhoan = (RapChieuPhim.Models.TaiKhoan)Session["USERSESSIO"];}
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="user-information" style="width:100%">
+                    <div class="user-img">
+                        <a href="#"><img src="/Content/Upload/Image/@phim.AnhPhim" alt=""><br></a>
+                    </div>
+                    <div class="user-fav">
+                        <h3 style="color:white;font-size:25px;text-align:center">@phim.TenPhim</h3>
+                        <ul>
+                            <li class="active"><a style="color:white;">Năm :@phim.NamPhatHanh</a></li>
+                            <li><a>Thể Loại:@phim.TenLoai</a></li>
+                            <li><a>Thời Lượng:@phim.ThoiLuong (phút)</a></li>
+                            <li><a>Đạo Diễn:@phim.DaoDien </a></li>
+                            <li><a>Diễn Viên:@phim.DienVien </a></li>
+                            <li><a>Ngày Công Chiếu:@phim.NgayCongChieu </a></li>
+                            <li><a>Ngày Kết Thúc:@phim.NgayKetThuc </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-pro" action="#">
+                    <form action="/Ve/Create" class="user" method="get">
+                        <h4>Đặt Vé Xem Phim</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Email Người Dùng</label>
+                                <input style="color:black;" type="text" value="@taikhoan.TenDangNhap" placeholder="Tên Người Nhận Vé" name="username" disabled>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Chọn Ngày Xem Phim</label>
+                                <select id="ngay" name="showtimes" onchange="loadngay1234($(this))">
+                                    <option>-- Chọn ngày xem --</option>
+                                    @foreach (var item in list)
+                                    {
+                                        <option value="@item.ToString("dd-MM-yyyy")">@item.ToString("dd-MM-yyyy")</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Phòng chiếu:</label>
+                                <select id="phong" onclick="loadgio()">
+                                    <text id="phong" onclick="loadgio()">Phòng</text>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Chọn giờ xem</label>
+                                <select id="gioxem" onchange="loadghe()">
+                                    <option>- Chọn giờ xem -</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function loadngay1234() {
+        var n = $('#ngay').val();
+        $.get("/Ve/Phong/?Ngay=" + n, function (res) {
+            debugger;
+            var html = "<text>  </text>";
+            for (var i = 0; i < res.length; i++) {
+                html += '<option value="' + res[i].Id + '">' + res[i].TenPhong + '</option>';
+            }
+            $("#phong").html(html);
+        });
+    }
+    function loadgio() {
+        var n = $('#phong').val();
+        var m = $('#ngay').val();
+        $.get("/Ve/GioXem/?Ngay=" + m + "&IdPhong=" + n, function (res) {
+            debugger;
+            var html = "<option> --Chọn giờ-- </option>";
+            for (var i = 0; i < res.length; i++) {
+                html += '<option value="' + res[i].Id + '">' + res[i].GIOBD + ' - ' + res[i].GIOKT + '</option>';
+            }
+            $("#gioxem").html(html);
+        });
+    }
+    //function loadphong() {
+    //    var p = $('#phong').val();
+    //    $.get("/Ve/Phong/?Id=" + p, function (res) {
+    //        var html = "<option>- Chọn phòng -</option>";
+    //        for (var i = 0; i < res.length; i++) {
+    //            html += '<option value="' + res[i].Id + '">' + res[i].TenPhong + '</option>';
+    //        }
+    //        $("#ghe").html(html);
+    //    });
+    //}
+    function loadghe() {
+        var g = $('#gioxem').val();
+        window.location.href = '/Ve/Ghe/?Id=' + g;
+    }
+</script>

@@ -1,0 +1,96 @@
+﻿@model RapChieuPhim.Models.TaiKhoan
+@using RapChieuPhim.Models
+@{
+    ViewBag.Title = "SuaThongTin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ns = ViewBag.NS;
+}
+
+<div class="page-single" style="margin-top:40px">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-pro" action="#">
+                    <h4 style="font-size:30px;">Thông tin cá nhân</h4>
+                    @using (Html.BeginForm("SuaThongTin", "TaiKhoan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input hidden value="@Model.Id" name="Id" />
+                        <input hidden value="@Model.id_ThongTin" name="id_ThongTin" />
+                        <input hidden value="@Model.TenDangNhap" name="TenDangNhap" />
+                        <input hidden value="@Model.NgayDangKy" name="NgayDangKy" />
+                        <input hidden value="@Model.PhanQuyen" name="PhanQuyen" />
+                        <input hidden value="@Model.TinhTrang" name="TinhTrang" />
+                        <div class="form-horizontal">
+                            <h4>Thông tin cá nhân</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="col-md-2" style="color:white;font-size:20px;">
+                                    Họ tên
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" value="@ViewBag.HoTen" name="Ten" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2" style="color: white; font-size: 20px;">
+                                    Địa chỉ
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" value="@ViewBag.DC" name="DiaChi" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-2" style="color: white; font-size: 20px;">
+                                    Giới tính
+                                </div>
+                                <div class="col-md-10">
+                                    <select class="form-control" name="GioiTinh">
+                                        <option value="Nam" @(ViewBag.GT == "Nam" ? "checked" : "")>Nam</option>
+                                        <option value="Nữ" @(ViewBag.GT == "Nữ" ? "checked" : "")>Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2" style="color: white; font-size: 20px;">
+                                    Ngày sinh
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" value="@ns" name="NgaySinh" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2" style="color: white; font-size: 20px;">
+                                    Email
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        <input type="text" value="@ViewBag.Email" name="Email" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2" style="color: white; font-size: 20px;">
+                                    Mật khẩu
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        <input type="text" name="MatKhau" value="@Model.MatKhau" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Cập nhật" class="btn btn-primary" style="background-color:white" />
+                                </div>
+                            </div>
+
+                        </div>}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

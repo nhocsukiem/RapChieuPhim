@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3685a07dc5ba4765827f4ca3e90a8532" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.BinhLuan" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.CaChieu" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.DatVe" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.Ghe" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.LichChieu" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.LoaiGhe" Width="1.5" PointX="3.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.LoaiPhim" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.Phim" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.Phong" Width="1.5" PointX="3.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.Suatchieu" Width="1.5" PointX="3.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.ThongTin" Width="1.5" PointX="1.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.Ve" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.BinhLuan_Phim" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.ghe_phong" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.tkdt" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.tkdttp" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.tkdttp1" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.Ve_LC_Phim" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYRAPCHIEUPHIMModel.Ve_LC_Phim_TK" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_PBL" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_TKBL" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_LC_CC" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_DV_TK" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_Ghe_LoaiGhe" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_Ghe_Phong" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_V_Gk" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_LC_V" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_P_V" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_Phim_LC" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_SC_LC" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_V_P" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_tt" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYRAPCHIEUPHIMModel.FK_V_TK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

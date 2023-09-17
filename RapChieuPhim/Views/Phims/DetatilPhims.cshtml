@@ -1,0 +1,175 @@
+﻿@model RapChieuPhim.ViewModel.PhimViewModel
+@using RapChieuPhim.Models;
+@{
+    ViewBag.Title = "DetatilPhims";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewData["Binhluan"] as List<BinhLuan_Phim>;
+}
+
+<div class="hero mv-single-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <h1> movie listing - list</h1>
+                <ul class="breadcumb">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+                </ul> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-single movie-single movie_single">
+    @{ var phimdetails = (RapChieuPhim.ViewModel.PhimViewModel)ViewData["phimview"];
+        var loaiphim = (RapChieuPhim.Models.LoaiPhim)ViewData["loaiphim"];
+    }
+    <div class="container">
+        <div class="row ipad-width2">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="movie-img sticky-sb">
+                    <img src="/Content/Upload/Image/@phimdetails.AnhPhim" alt="">
+                    <div class="movie-btn">
+                        <div class="btn-transform transform-vertical red">
+                            <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i>Trailer</a></div>
+                            <div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+                        </div>
+                        <div class="btn-transform transform-vertical">
+                            <div><a href="/Ve?id=@phimdetails.Id" class="item item-1 yellowbtn"> <i class="ion-card"></i>Đặt vé</a></div>
+                            <div><a href="/Ve?id=@phimdetails.Id" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="movie-single-ct main-content">
+                    <h1 class="bd-hd">@phimdetails.TenPhim</h1>
+                    <div class="social-btn">
+
+                        <div class="hover-bnt">
+
+                            <div class="hvr-item">
+                                <a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-twitter"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-googleplus"></i></a>
+                                <a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="movie-tabs">
+                        <div class="tabs">
+                            <ul class="tab-links tabs-mv">
+                                <li class="active"><a href="#overview">Mô tả</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="overview" class="tab active">
+                                    <div class="row">
+                                        <div class="col-md-10 col-sm-12 col-xs-12">
+                                            <p>@phimdetails.MoTa</p>
+
+                                            <div class="title-hd-sm">
+                                                <h4>Thông tin phim</h4>
+                                            </div>
+                                            <!-- movie cast -->
+                                            <div class="mvcast-item">
+                                                <div class="cast-it">
+                                                    <div class="cast-left">
+                                                        <a href="#">Đạo diễn:</a>
+                                                    </div>
+                                                    <p>@phimdetails.DaoDien</p>
+                                                </div>
+                                            </div>
+                                            <div class="mvcast-item">
+                                                <div class="cast-it">
+                                                    <div class="cast-left">
+                                                        <a href="#">Diễn viên:</a>
+                                                    </div>
+                                                    <p>@phimdetails.DienVien</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="mvcast-item">
+                                                <div class="cast-it">
+                                                    <div class="cast-left">
+                                                        <a href="#">Thời lượng:</a>
+                                                    </div>
+                                                    <p>@phimdetails.ThoiLuong Phút</p>
+                                                </div>
+                                            </div>
+                                            <div class="mvcast-item">
+                                                <div class="cast-it">
+                                                    <div class="cast-left">
+                                                        <a href="#">Ngày chiếu:</a>
+                                                    </div>
+                                                    <p>@phimdetails.NgayCongChieu</p>
+                                                </div>
+                                            </div>
+                                            <div class="mvcast-item">
+                                                <div class="cast-it">
+                                                    <div class="cast-left">
+                                                        <a href="#">Ngày ket thuc:</a>
+                                                    </div>
+                                                    <p>@phimdetails.NgayKetThuc</p>
+                                                </div>
+                                            </div>
+                                            <div class="title-hd-sm">
+                                                <div class="row">
+
+                                                    <div class="mvcast-item">
+                                                        <div class="div" style="margin: 15px; font-size:20px;">
+                                                            <label style="color:aliceblue">Bình luận: </label>
+                                                            <br />
+                                                            <textarea placeholder="Bạn cảm nhận gì về bộ phim ?" style="width:100vh" rows="3" class="form-control" id="binhluan" name="BinhLuan"></textarea>
+                                                        </div>
+                                                        <div class="col-12" style="margin:15px">
+                                                            <button onclick="binhluan()" style="width: 100px; height: 40px; padding: 10px; background: #dd003f; color: white; border-radius: 50px">Bình luận</button>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row" style="margin:15px;color:white">
+                                                        @foreach (var item in list)
+                                                        {
+                                                           
+                                                            <label>Người dùng: @item.TenNguoiDung</label><br />
+                                                            <label>Ngày đăng: @item.NgayDang.ToString("dd-MM-yyyy")</label>
+                                                            <br />
+                                                            <label>Nội dung bình luận   : @item.NoiDung</label>
+                                                            <br />
+                                                           
+                                                            <label>Đánh giá: @item.DanhGia</label>
+                                                            <br />
+                                                            <br />
+                                                        }
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function binhluan() {
+        debugger;
+        var matkk = document.cookie;
+        if (matkk == "") {
+            alert("Yêu cầu đăng nhập trước khi bình luận");
+            return false;
+        }
+        else {
+            var m = $('#binhluan').val();
+            window.location.href = '/Phims/BinhLuan?cmt=' + m;
+        }
+    }
+</script>

@@ -1,0 +1,66 @@
+﻿@using RapChieuPhim.Models;
+@model RapChieuPhim.Models.Ve_LC_Phim_TK
+@{
+    ViewBag.Title = "LoadVe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewData["list"] as List<Ve_LC_Phim_TK>;
+    var listanh = ViewData["listanh"] as List<QRCodeModel>;
+}
+
+<div class="page-single">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-pro" action="#">
+                    <h4 style="font-size:30px;">Lịch Sử Đặt Vé</h4>
+
+                    <div class="row">
+                        <div class="col-md-6 form-it">
+                            <br />
+                            @{ var tong = 0;
+
+                            }
+                            <label>Mã QR</label>
+                            <br />
+                            @foreach (var k in listanh)
+                            {
+                                <img src="@Url.Content(k.QRCodeImagePath)" alt="Image" />
+                            }
+                            <label>====================================================================================================</label>
+                            <label style="color:white;font-size:20px">Ngày Đặt: @DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</label><br />
+                            @*<label>Giờ:@DateTime.Now.Hour:@DateTime.Now.Minute:@DateTime.Now.Second</label><br />*@
+
+                            <label>Tên phim: @Model.TenPhim</label>
+                            <br />
+                            <label>Thể loại phim: @Model.TenLoai</label>
+                            <br />
+                            <label>Tên phòng: @Model.TenPhong</label>
+                            <br />
+                            <label>Tên ghế: @Model.TenGhe</label>
+                            <br />
+                            <label>Loại ghế: @Model.TenLoaiGhe</label>
+                            <br />
+                            <label>Giá vé: @convert.ConvertToThousand64_From_Float(Model.GiaVe.Value.ToString("F99").TrimEnd('0').Trim('.')) VNĐ</label>
+                            <br />
+                            <label>Ngày: @Model.Thu</label>
+                            <br />
+                            <label>
+                                Ngày chiếu: @Model.NgayChieu.ToString("dd-MM-yyyy")
+                            </label>
+                            <br />
+                            <label>
+                                Giờ chiếu: @Model.GioBD.Value - @Model.GioKT.Value
+                            </label>
+                            <br />
+                            <label>Suất chiếu: @Model.TenSuat</label>
+                            <br />
+                            <br />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

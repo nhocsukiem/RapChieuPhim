@@ -1,0 +1,98 @@
+﻿@model IEnumerable<RapChieuPhim.Models.LoaiPhim>
+
+<header class="ht-header">
+    <div class="container">
+        <nav class="navbar navbar-default navbar-custom">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header logo">
+                <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <div id="nav-icon1">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <a href="/Home"><img class="logo" src="~/Content/Client/images/logo3.png" alt="" width="119" height="58"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav flex-child-menu menu-left">
+                    <li class="hidden">
+                        <a href="~/Content/Client/#page-top"></a>
+                    </li>
+                    <li class="dropdown first">
+                        <a class="btn btn-default  lv1" href="/Home">
+                            Trang chủ
+                        </a>
+                     
+                    </li>
+                    <li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+                            Thể loại<i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu level1">
+                            @foreach (var theloai in Model)
+                            {
+                                <li><a href="/Phims?Id=@theloai.Id">@theloai.TenLoai</a></li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown first">
+                        <a class="btn btn-default" href="/Phims">
+                           Phim
+                        </a>
+                    </li>
+                    @*<li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+                            news <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu level1">
+                          
+                        </ul>
+                    </li>
+                    <li class="dropdown first">
+                        <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+                            service <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu level1">
+                           
+                        </ul>
+                    </li>*@
+                </ul>
+                <ul class="nav navbar-nav flex-child-menu menu-right">
+                    @if (Session["HoTen"] != null)
+                    {
+                        var pq = Session["PQ"];
+                    <li class="dropdown first" style="display:flex">
+                        @if (pq.Equals("5"))
+                        {
+                            <a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+                                @Session["HoTen"]
+                            </a>
+                            <ul class="dropdown-menu level1">
+                                <li><a href="/Phims/LoadVe">Thông tin đặt vé</a></li>
+                                <li><a href="/TaiKhoan/SuaThongTin">Thông tin cá nhân</a></li>
+                            </ul>
+                            <a class="btn btn-default dropdown-toggle lv1" href="@Url.Action("Logout", "TaiKhoan")">Đăng xuất</a>}
+                        else
+                        { <a href="/Admin/phims" class="btn btn-default dropdown-toggle lv1">
+                                Quản Trị Web
+                            </a>
+                            <a class="btn btn-default dropdown-toggle lv1" href="@Url.Action("Logout", "TaiKhoan")">Đăng xuất</a>}
+                    </li>
+                    
+
+                    <li><a href="/TaiKhoan/Logout"></a></li>
+                            }
+                            else
+                            {
+                    <li class="loginLink"><a href="~/Content/Client/#">ĐĂNG NHẬP</a></li>
+                    <li class="btn signupLink"><a href="~/Content/Client/#">ĐĂNG KÝ</a></li>
+                    }
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+    </div>
+</header>

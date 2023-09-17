@@ -1,0 +1,125 @@
+﻿@model RapChieuPhim.Models.Ve
+@using RapChieuPhim.Models
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Ve = ViewData["Ve"] as List<Ve>;
+    var ghes = ViewData["ghe"] as List<Ghe>;
+    var Ve_LC_Phim= ViewData["Ve_LC_Phim"] as List<Ve_LC_Phim>;
+}
+<div class="hero user-hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hero-ct">
+                    <h1>THÔNG TIN PHIM</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Trang chủ</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span>Hồ sơ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-single">
+    @{ var phim = (RapChieuPhim.ViewModel.PhimViewModel)ViewData["phimmodel"];
+        var taikhoan = (RapChieuPhim.Models.TaiKhoan)Session["USERSESSIO"];}
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="user-information" style="width:100%">
+                    <div class="user-img">
+                        <a href="#"><img src="/Content/Upload/Image/@phim.AnhPhim" alt=""><br></a>
+                    </div>
+                    <div class="user-fav">
+                        <h3 style="color:white;font-size:25px;text-align:center">@phim.TenPhim</h3>
+                        <ul>
+                            <li class="active"><a style="color:white;">Năm :@phim.NamPhatHanh</a></li>
+                            <li><a >Thể Loại:@phim.TenLoai</a></li>
+                            <li><a >Thời Lượng:@phim.ThoiLuong (phút)</a></li>
+                            <li><a >Đạo Diễn:@phim.DaoDien </a></li>
+                            <li><a >Diễn Viên:@phim.DienVien </a></li>
+                            <li><a >Ngày Công Chiếu:@phim.NgayCongChieu </a></li>
+                            <li><a >Ngày Kết Thúc:@phim.NgayKetThuc </a></li>
+                            <li><a >Thanh toán thành công</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-pro" action="#">
+                        <h4>Thanh toán</h4>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Thông tin đặt vé</label>
+                                <br />
+                                <table class="table">
+                                    <tr style="color:white;">
+                                        <td>Mã đặt vé</td>
+                                        <td>Tên phim</td>
+                                        <td>Thể loại phim</td>
+                                        <td>Tên phòng</td>
+                                        <td>Tên ghế</td>
+                                        <td>Loại ghế</td>
+
+                                        <td>Ngày đặt vé</td>
+                                        <td>Ngày chiếu</td>
+                                        <td>Giờ chiếu</td>
+                                        <td>Suất chiếu</td>
+                                        <td>Giá vé</td>
+                                    </tr>
+                                    @{ var tong = 0;}
+                                    @foreach (var item in Ve_LC_Phim)
+                                    {
+                                        var tien = Convert.ToInt32(item.GiaVe) + Convert.ToInt32(item.phuthusc) + Convert.ToInt32(item.Phuthulc);
+                                        <tr style="color:white;">
+                                            <td id="IdVe">Ve_@item.Id</td>
+                                            <td>@item.TenPhim</td>
+                                            <td> @item.TenLoai</td>
+                                            <td>@item.TenPhong</td>
+                                            <td>@item.TenGhe</td>
+                                            <td>@item.TenLoaiGhe</td>
+
+                                            <td>@item.Thu</td>
+                                            <td>@item.NgayChieu.ToString("dd-MM-yyyy")</td>
+                                            <td>@item.GioBD.Value - @item.GioKT.Value</td>
+                                            <td>@item.TenSuat</td>
+                                            <td>@convert.ConvertToThousand64_From_Float(tien.ToString("F99").TrimEnd('0').Trim('.')) VNĐ</td>
+                                        </tr>
+                                        tong += tien;
+                                    }
+                                    <tr style="color:white;">
+                                        <td colspan="9" ></td>
+                                        <td >Tổng tiền</td>
+                                        <td>@tong</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div class="row" style="color:white;">
+                                <div class="col-md-2" style="color:white;">Họ tên:</div><input class="col-md-5 form-control" name="Ten" value="@ViewBag.HoTen" id="Ten" placeholder="Nhập tên người mua vé" type="text" />
+                                <div class="col-md-2" style="color:white;">Số điện thoại:</div><input class="col-md-5 form-control" name="SDT" id="SDT" placeholder="Nhập số điện thoại" type="text" />
+                                <div class="col-md-2" style="color:white;">Nhập Email:</div><input class="col-md-5 form-control" name="Email" value="@ViewBag.Email" id="Email" placeholder="Nhập email" type="text" />
+                            </div>
+                            <button class="btn btn-success" style="text-align:center;margin-top:20px" onclick="thanhtoan(@tong)">Thanh Toán</button>
+
+                        </div>
+
+            </div>
+                
+        </div>
+    </div>
+</div>
+<script>
+    function thanhtoan(tien) {
+        var sdt = $('#SDT').val();
+        var email = $('#Email').val();
+        var Ten = $('#Ten').val();
+        debugger;
+        window.location.href = "/Ve/ThanhToanSau/?Id=@Session["IdVe"]&&Tien=" + tien + "&&Ten=" + Ten + "&&SDT=" + sdt + "&&Email=" + email;
+    }   
+</script>
+
